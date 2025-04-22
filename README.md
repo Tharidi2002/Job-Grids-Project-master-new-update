@@ -1,96 +1,81 @@
-JobGrids - Job Portal System
-Project Description
-JobGrids is a full-stack job portal application that connects job seekers with employers. The system features:
+# JobGrids - Job Portal Management System
 
-User Types: Job seekers, company representatives, and admin users
+<div align="center">
+  <h2>Modern Job Recruitment Platform</h2>
+</div>
+<hr/>
 
-Key Functionalities:
+<div>
+  <h4>## About The Project</h4>
+  <p>JobGrids is a full-stack recruitment platform that connects job seekers with employers through an intuitive interface. The system streamlines the hiring process with advanced matching algorithms and real-time communication tools.</p>
+</div>
 
-Job postings and applications
+<div class="jobgrids-features">
+  <h4>## Key Features</h4>
+  <ul style="list-style-type: none; padding-left: 0;">
+    <li style="margin-bottom: 8px;">✔️ Multi-role authentication (Job Seeker, Employer, Admin)</li>
+    <li style="margin-bottom: 8px;">✔️ Interactive job search with filters</li>
+    <li style="margin-bottom: 8px;">✔️ Company profile management</li>
+    <li style="margin-bottom: 8px;">✔️ Resume/CV upload and parsing</li>
+    <li>✔️ Application tracking system</li>
+  </ul>
+</div>
 
-Company profiles
+<div>
+  <h4>## Technologies Used</h4>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Technologies</th>
+    </tr>
+    <tr>
+      <td>Backend</td>
+      <td>Spring Boot, Java 17</td>
+    </tr>
+    <tr>
+      <td>Frontend</td>
+      <td>HTML5, CSS3, JavaScript, Bootstrap</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>MySQL 8</td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td>JWT Authentication, Spring Security</td>
+    </tr>
+    <tr>
+      <td>Build Tool</td>
+      <td>Maven</td>
+    </tr>
+  </table>
+</div>
 
-Interactive chatbot for support
+<h4>## 🎥 Video Demonstration</h4>
+<p>Watch the demo: <a href="https://youtu.be/IgtbjvjvGEw?si=z5K-9UuUtyJc6RAJ">JobGrids Demo Video</a></p>
 
-User profile management
+<h4>## Setup Instructions</h4>
+<ol>
+  <li>Clone the repositories:
+    <pre>https://github.com/Tharidi2002/Job-Grids-Project-master-new-update.git</pre>
+  </li>
 
-Technical Stack:
+  <li>Configure MySQL database:
+    <pre>CREATE DATABASE jobNet;
+GRANT ALL PRIVILEGES ON jobNet.* TO 'username'@'localhost' IDENTIFIED BY 'password';</pre>
+  </li>
 
-Frontend: HTML5, CSS3, JavaScript, Bootstrap
+  <li>Update application.properties with your DB credentials</li>
 
-Backend: Spring Boot (Java)
+  <li>Run the backend:
+    <pre>mvn spring-boot:run</pre>
+  </li>
 
-Database: MySQL
+  <li>Open frontend in browser:
+    <pre>Open index.html in your preferred browser</pre>
+  </li>
 
-Screenshots
-Home Page
-Home Page
-Landing page with job search functionality
+</ol>
 
-User Dashboard
-User Dashboard
-Personalized dashboard for job seekers
+<h4>## Screenshots</h4>
 
-Company Profile
-Company Profile
-Company management interface
-
-Chat Support
-Chat Support
-Interactive FAQ chatbot
-
-Setup Instructions
-Backend Setup
-Requirements:
-
-Java 17+
-
-MySQL 8.0+
-
-Maven
-
-Installation:
-
-bash
-git clone https://github.com/yourusername/jobgrids-backend.git
-cd jobgrids-backend
-Database Configuration:
-
-Create MySQL database:
-
-sql
-CREATE DATABASE jobNet;
-Update application.properties:
-
-properties
-spring.datasource.url=jdbc:mysql://localhost:3306/jobNet
-spring.datasource.username=yourusername
-spring.datasource.password=yourpassword
-Run Application:
-
-bash
-mvn spring-boot:run
-Frontend Setup
-Requirements:
-
-Modern web browser
-
-Live server extension (for local development)
-
-Installation:
-
-bash
-git clone https://github.com/yourusername/jobgrids-frontend.git
-cd jobgrids-frontend
-Configuration:
-
-Update API endpoints in js/config.js:
-
-javascript
-const API_BASE_URL = "http://localhost:8082/api/v1";
-Run Application:
-
-Open index.html in browser or use live server
-
-Demo Video
-Watch JobGrids Demo
