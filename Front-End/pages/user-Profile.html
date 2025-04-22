@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>My Profile - JobGrids</title>
+    <meta name="description" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="../template/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="../template/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="../template/assets/css/animate.css" />
+    <link rel="stylesheet" href="../template/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="../template/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/main.css" />
+
+    <!-- Bootstrap 5 CSS -->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Font Awesome -->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">-->
+    <style>
+        .profile-header {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-card {
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            border-left: 4px solid #0d6efd;
+        }
+        /* Style for the create profile modal */
+        #createImagePreview {
+            max-width: 150px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<!--[if lte IE 9]>
+<p class="browserupgrade">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+    your experience and security.
+</p>
+<![endif]-->
+
+<div id="loading-area"></div>
+
+<!-- Start Header Area -->
+<header class="header other-page">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo" href="user-dashboard.html">
+                            <img class="logo1" src="../template/assets/images/logo/logo.svg" alt="Logo" />
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ml-auto">
+                                <li class="nav-item"><a href="user-dashboard.html">Home</a></li>
+                                <li class="nav-item"><a href="user-Profile.html" class="active">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#" class="active">Profile</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="#">Candidates</a></li>
+                                <li class="nav-item"><a href="#">Employers </a></li>
+                                <li class="nav-item"><a href="#">Blog</a></li>
+                                <li class="nav-item"><a href="#">Contact </a> </li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="../index.html" class="login"><i
+                                    class="lni lni-lock-alt"></i> LogOut</a>
+                        </div>
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- End Header Area -->
+
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">About Us</h1>
+                    <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+                        Business draws on a wide range of different business .</p>
+                </div>
+                <ul class="breadcrumb-nav">
+                    <li><a href="#">Home</a></li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="profile-card p-4 text-center">
+                <div class="mb-4">
+                    <img id="profileImage" src="../assets/images/default-profile.jpg" class="profile-img" alt="Profile Image">
+                    <h3 class="mt-3" id="profileName">Loading...</h3>
+                    <p class="text-muted" id="userRole"></p>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        <i class="fas fa-edit me-2"></i>Edit Profile
+                    </button>
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">
+                        <i class="fas fa-trash-alt me-2"></i>Delete Account
+                    </button>
+                </div>
+                <button class="btn btn-outline-primary mt-4" data-bs-toggle="modal" data-bs-target="#createProfileModal">
+                    <i class="fas fa-plus-circle me-2"></i>Create Profile
+                </button>
+            </div>
+
+            <div class="profile-card p-4 mt-4">
+                <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Account Details</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-envelope me-2"></i>Email</span>
+                        <span id="userEmail"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-calendar-alt me-2"></i>Member Since</span>
+                        <span id="joinDate"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="profile-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4><i class="fas fa-user me-2"></i>Personal Information</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">First Name</label>
+                        <div class="form-control bg-light" id="firstName"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Last Name</label>
+                        <div class="form-control bg-light" id="lastName"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Contact Number</label>
+                        <div class="form-control bg-light" id="contactNumber"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Address</label>
+                        <div class="form-control bg-light" id="address"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-card p-4 mt-4">
+                <h4 class="mb-4"><i class="fas fa-chart-line me-2"></i>Activity Stats</h4>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card p-3">
+                            <h6 class="text-muted">Jobs Applied</h6>
+                            <h3 class="mb-0" id="jobsApplied">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card p-3">
+                            <h6 class="text-muted">Saved Jobs</h6>
+                            <h3 class="mb-0" id="savedJobs">0</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card p-3">
+                            <h6 class="text-muted">Profile Views</h6>
+                            <h3 class="mb-0" id="profileViews">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-user-edit me-2"></i>Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editProfileForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="editFirstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="editFirstName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editLastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="editLastName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="editContact">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="editAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="editAddress" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profileImageUpload" class="form-label">Profile Image</label>
+                                <input class="form-control" type="file" id="profileImageUpload" accept="image/*">
+                                <div class="form-text">Max size 2MB (JPG, PNG)</div>
+                            </div>
+                            <div class="text-center">
+                                <img id="imagePreview" src="../template/assets/images/default-profile.jpg" class="img-thumbnail" style="max-width: 150px; display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Create Profile Modal -->
+<div class="modal fade" id="createProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-user-plus me-2"></i>Create Your Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="createProfileForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="createFirstName" class="form-label">First Name*</label>
+                                <input type="text" class="form-control" id="createFirstName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="createLastName" class="form-label">Last Name*</label>
+                                <input type="text" class="form-control" id="createLastName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="createContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="createContact">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="createAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="createAddress" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="createProfileImage" class="form-label">Profile Image</label>
+                                <input class="form-control" type="file" id="createProfileImage" accept="image/*">
+                                <div class="form-text">Max size 2MB (JPG, PNG)</div>
+                            </div>
+                            <div class="text-center">
+                                <img id="createImagePreview" src="#" class="img-thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Profile Modal -->
+<div class="modal fade" id="deleteProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-triangle me-2"></i>Delete Account</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Enter your password to confirm:</label>
+                    <input type="password" class="form-control" id="confirmPassword" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Start Clients Area -->
+<div class="client-logo-section">
+    <div class="container">
+        <div class="client-logo-wrapper">
+            <div class="client-logo-carousel d-flex align-items-center justify-content-between">
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client1.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client2.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client3.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client4.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client5.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client6.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client2.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client3.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client4.png" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Clients Area -->
+
+
+
+<!-- Start Footer Area -->
+<footer class="footer">
+    <!-- Start Middle Top -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="f-about single-footer">
+                        <div class="logo">
+                            <a href="#"><img src="../template/assets/images/logo/logo.svg" alt="Logo"></a>
+                        </div>
+                        <p>Start building your creative website with our awesome template Massive.</p>
+                        <ul class="contact-address">
+                            <li><span>Address:</span> 555 Wall Street, USA, NY</li>
+                            <li><span>Email:</span> example@apus.com</li>
+                            <li><span>Call:</span> 555-555-1234</li>
+                        </ul>
+                        <div class="footer-social">
+                            <ul>
+                                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-8 col-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>For Candidates</h3>
+                                <ul>
+                                    <li><a href="#">User Dashboard</a></li>
+                                    <li><a href="#">CV Packages</a></li>
+                                    <li><a href="#">Jobs Featured</a></li>
+                                    <li><a href="#">Jobs Urgent</a></li>
+                                    <li><a href="#">Candidate List</a></li>
+                                    <li><a href="#">Candidates Grid</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>For Employers</h3>
+                                <ul>
+                                    <li><a href="#">Post New</a></li>
+                                    <li><a href="#">Employer List</a></li>
+                                    <li><a href="#">Employers Grid</a></li>
+                                    <li><a href="#">Job Packages</a></li>
+                                    <li><a href="#">Jobs Listing</a></li>
+                                    <li><a href="#">Jobs Featured</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer newsletter">
+                                <h3>Join Our Newsletter</h3>
+                                <p>Subscribe to get the latest jobs posted, candidates...</p>
+                                <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                    <input name="EMAIL" placeholder="Your email address" class="common-input"
+                                           onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Your email address'" required="" type="email">
+                                    <div class="button">
+                                        <button class="btn">Subscribe Now! <span class="dir-part"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Footer Middle -->
+    <!-- Start Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="left">
+                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
+                                                           target="_blank">GrayGrids</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="right">
+                            <ul>
+                                <li><a href="#">Terms of use</a></li>
+                                <li><a href="#"> Privacy Policy</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Middle -->
+</footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 for notifications -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- jQuery -->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+
+<!-- ========================= JS here ========================= -->
+<script src="../template/assets/js/bootstrap.min.js"></script>
+<script src="../template/assets/js/wow.min.js"></script>
+<script src="../template/assets/js/tiny-slider.js"></script>
+<script src="../template/assets/js/glightbox.min.js"></script>
+<script src="../template/assets/js/main.js"></script>
+<script type="text/javascript">
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem('jwt_token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Load profile data
+        function loadProfile() {
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/profile/get',
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    const profile = response.data;
+                    if (profile) {
+                        // Profile exists - populate data
+                        $('#profileName').text(profile.firstName + ' ' + profile.lastName);
+                        $('#userRole').text(profile.role);
+                        $('#userEmail').text(profile.email);
+                        $('#joinDate').text(new Date(profile.joinDate).toLocaleDateString());
+                        $('#firstName').text(profile.firstName || 'Not provided');
+                        $('#lastName').text(profile.lastName || 'Not provided');
+                        $('#contactNumber').text(profile.contact || 'Not provided');
+                        $('#address').text(profile.address || 'Not provided');
+
+                        if (profile.image) {
+                            $('#profileImage').attr('src', profile.image);
+                        }
+
+                        // Populate edit form
+                        $('#editFirstName').val(profile.firstName || '');
+                        $('#editLastName').val(profile.lastName || '');
+                        $('#editContact').val(profile.contact || '');
+                        $('#editAddress').val(profile.address || '');
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', 'Failed to load profile data', 'error');
+                }
+            });
+        }
+
+        // Image preview for edit form
+        $('#profileImageUpload').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Image preview for create form
+        $('#createProfileImage').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#createImagePreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Update profile
+        $('#editProfileForm').submit(function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('firstName', $('#editFirstName').val());
+            formData.append('lastName', $('#editLastName').val());
+            formData.append('contact', $('#editContact').val());
+            formData.append('address', $('#editAddress').val());
+
+            const imageFile = $('#profileImageUpload')[0].files[0];
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/profile/update',
+                type: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#editProfileModal').modal('hide');
+                    Swal.fire('Success', 'Profile updated successfully!', 'success');
+                    loadProfile();
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', xhr.responseJSON?.message || 'Failed to update profile', 'error');
+                }
+            });
+        });
+
+        // Create profile
+        $('#createProfileForm').submit(function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('firstName', $('#createFirstName').val());
+            formData.append('lastName', $('#createLastName').val());
+            formData.append('contact', $('#createContact').val());
+            formData.append('address', $('#createAddress').val());
+
+            const imageFile = $('#createProfileImage')[0].files[0];
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/profile/save',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#createProfileModal').modal('hide');
+                    Swal.fire('Success', 'Profile created successfully!', 'success');
+                    loadProfile(); // Refresh the profile data
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', xhr.responseJSON?.message || 'Failed to create profile', 'error');
+                }
+            });
+        });
+
+        // Delete profile
+        $('#confirmDeleteBtn').click(function() {
+            const password = $('#confirmPassword').val();
+            if (!password) {
+                Swal.fire('Error', 'Please enter your password', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This will permanently delete your account and all associated data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'http://localhost:8082/api/v1/profile/delete',
+                        type: 'DELETE',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        },
+                        data: JSON.stringify({ password: password }),
+                        success: function() {
+                            localStorage.removeItem('jwt_token');
+                            localStorage.removeItem('user_role');
+                            Swal.fire(
+                                'Deleted!',
+                                'Your account has been deleted.',
+                                'success'
+                            ).then(() => {
+                                window.location.href = '../index.html';
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Error', xhr.responseJSON?.message || 'Failed to delete account', 'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Initial load
+        loadProfile();
+    });
+</script>
+</body>
+</html>

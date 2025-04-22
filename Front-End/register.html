@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - jobGrids Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .role-option {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .role-option.active {
+            border-color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container">
+    <div class="auth-container bg-white">
+        <h2 class="text-center mb-4"><i class="fas fa-user-plus me-2"></i>Register</h2>
+
+        <form id="registerForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" minlength="8" required>
+                <div class="form-text">Minimum 8 characters</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Select Role</label>
+                <div class="role-option active" data-role="SystemUser">
+                    <input type="radio" class="form-check-input" name="role" value="SystemUser" checked>
+                    <label class="form-check-label fw-bold">System User</label>
+                    <p class="mb-0 text-muted">Normal System User</p>
+                </div>
+                <div class="role-option" data-role="CompanyUser">
+                    <input type="radio" class="form-check-input" name="role" value="CompanyUser">
+                    <label class="form-check-label fw-bold">Company User</label>
+                    <p class="mb-0 text-muted">Browse and purchase products</p>
+                </div>
+<!--                Admin button-->
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
+                        <label class="form-check-label" for="exampleRadios3">
+                           ADMIN
+                        </label>
+                        <p class="mb-0 text-muted">Browse and purchase products</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2">
+                <i class="fas fa-user-plus me-2"></i>Register
+            </button>
+
+            <div class="text-center mt-3">
+                Already have an account? <a href="login.html">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 for notifications -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Role selection styling
+        $('.role-option').click(function() {
+            $('.role-option').removeClass('active');
+            $(this).addClass('active');
+            $(this).find('input[type="radio"]').prop('checked', true);
+        });
+
+        // Form submission
+        $('#registerForm').submit(function(e) {
+            e.preventDefault();
+
+            const username = $('#username').val().trim();
+            const email = $('#email').val().trim();
+            const password = $('#password').val();
+            const confirmPassword = $('#confirmPassword').val();
+            const role = $('input[name="role"]:checked').val();
+
+            // Validation
+            if (password !== confirmPassword) {
+                Swal.fire('Error', 'Passwords do not match!', 'error');
+                return;
+            }
+
+            if (password.length < 8) {
+                Swal.fire('Error', 'Password must be at least 8 characters!', 'error');
+                return;
+            }
+
+            // Show loading
+            Swal.fire({
+                title: 'Registering...',
+                allowOutsideClick: false,
+                didOpen: () => Swal.showLoading()
+            });
+
+            // AJAX request
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/user/register',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    username: username,
+                    email: email,
+                    password: password,
+                    role: role
+                }),
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registration Successful!',
+                        text: 'You will be redirected to login',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = 'login.html';
+                    });
+                },
+                error: function(xhr) {
+                    let errorMsg = xhr.responseJSON?.message || 'Registration failed';
+                    Swal.fire('Error', errorMsg, 'error');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

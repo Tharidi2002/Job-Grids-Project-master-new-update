@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company User FAQ Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../template/assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="../template/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="../template/assets/css/animate.css" />
+    <link rel="stylesheet" href="../template/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="../template/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/main.css" />
+
+    <style>
+        .chat-container {
+            max-width: 600px;
+            margin: 30px auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        .chat-body {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .chat-footer {
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        .question-item {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 4px solid #0d6efd;
+        }
+        .question-item:hover {
+            background-color: #f0f7ff;
+        }
+        .answer-item {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #e9f5ff;
+            border-radius: 5px;
+            display: none;
+        }
+        .admin-panel {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="chat-container">
+        <div class="chat-header">
+            <i class="fas fa-robot me-2"></i> Company User FAQ Bot
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="text-center text-muted mb-3">
+                <small>Click on a question to see the answer</small>
+            </div>
+            <div id="questionsContainer"></div>
+        </div>
+        <div class="chat-footer">
+            <div class="input-group">
+                <input type="text" class="form-control" id="userQuestion" placeholder="Type your question...">
+                <button class="btn btn-primary" id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel (Only visible to admins) -->
+    <div class="admin-panel" id="adminPanel" style="display: none;">
+        <h4 class="mb-4"><i class="fas fa-cog me-2"></i>FAQ Management</h4>
+
+        <div class="mb-3">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFAQModal">
+                <i class="fas fa-plus me-2"></i>Add New FAQ
+            </button>
+        </div>
+
+        <div id="faqManagementTable"></div>
+    </div>
+</div>
+
+<!-- Add FAQ Modal -->
+<div class="modal fade" id="addFAQModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New FAQ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addFAQForm">
+                    <div class="mb-3">
+                        <label for="newQuestion" class="form-label">Question</label>
+                        <input type="text" class="form-control" id="newQuestion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newAnswer" class="form-label">Answer</label>
+                        <textarea class="form-control" id="newAnswer" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveFAQBtn">Save FAQ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit FAQ Modal -->
+<div class="modal fade" id="editFAQModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit FAQ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editFAQForm">
+                    <input type="hidden" id="editFAQId">
+                    <div class="mb-3">
+                        <label for="editQuestion" class="form-label">Question</label>
+                        <input type="text" class="form-control" id="editQuestion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editAnswer" class="form-label">Answer</label>
+                        <textarea class="form-control" id="editAnswer" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updateFAQBtn">Update FAQ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem('token'); // Get JWT token from storage
+        checkAdminStatus();
+        loadFAQs();
+
+        // Check if user is admin
+        function checkAdminStatus() {
+            if (!token) return;
+
+            // In a real app, you would decode the JWT to check roles
+            // For demo, we'll just check if token exists
+            $('#adminPanel').show();
+        }
+
+        // Load all FAQs
+        function loadFAQs() {
+            $.ajax({
+                url: '/api/v1/faqs',
+                type: 'GET',
+                success: function(response) {
+                    if (response.code === 200) {
+                        renderQuestions(response.data);
+                        if ($('#adminPanel').is(':visible')) {
+                            renderFAQManagementTable(response.data);
+                        }
+                    }
+                },
+                error: function(xhr) {
+                    console.error('Error loading FAQs:', xhr.responseText);
+                }
+            });
+        }
+
+        // Render questions in chat interface
+        function renderQuestions(faqs) {
+            const container = $('#questionsContainer');
+            container.empty();
+
+            faqs.forEach(faq => {
+                container.append(`
+                        <div class="question-item" data-id="${faq.id}">
+                            <strong>${faq.question}</strong>
+                        </div>
+                        <div class="answer-item" id="answer-${faq.id}">
+                            ${faq.answer}
+                        </div>
+                    `);
+            });
+
+            // Add click handlers
+            $('.question-item').click(function() {
+                const id = $(this).data('id');
+                $(`#answer-${id}`).toggle();
+            });
+        }
+
+        // Render FAQ management table for admin
+        function renderFAQManagementTable(faqs) {
+            const table = $('#faqManagementTable');
+            table.empty();
+
+            if (faqs.length === 0) {
+                table.append('<p>No FAQs found</p>');
+                return;
+            }
+
+            let html = `
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+            faqs.forEach(faq => {
+                html += `
+                        <tr>
+                            <td>${faq.id}</td>
+                            <td>${faq.question}</td>
+                            <td>${faq.answer.substring(0, 50)}...</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning edit-faq" data-id="${faq.id}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger delete-faq" data-id="${faq.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+            });
+
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+            table.append(html);
+
+            // Add edit handlers
+            $('.edit-faq').click(function() {
+                const id = $(this).data('id');
+                editFAQ(id);
+            });
+
+            // Add delete handlers
+            $('.delete-faq').click(function() {
+                const id = $(this).data('id');
+                if (confirm('Are you sure you want to delete this FAQ?')) {
+                    deleteFAQ(id);
+                }
+            });
+        }
+
+        // Add new FAQ
+        $('#saveFAQBtn').click(function() {
+            const question = $('#newQuestion').val();
+            const answer = $('#newAnswer').val();
+
+            if (!question || !answer) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            $.ajax({
+                url: '/api/v1/faqs',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+                    question: question,
+                    answer: answer
+                }),
+                success: function(response) {
+                    if (response.code === 201) {
+                        $('#addFAQModal').modal('hide');
+                        $('#addFAQForm')[0].reset();
+                        loadFAQs();
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error creating FAQ: ' + xhr.responseJSON.message);
+                }
+            });
+        });
+
+        // Edit FAQ
+        function editFAQ(id) {
+            $.ajax({
+                url: '/api/v1/faqs/' + id,
+                type: 'GET',
+                success: function(response) {
+                    if (response.code === 200) {
+                        const faq = response.data;
+                        $('#editFAQId').val(faq.id);
+                        $('#editQuestion').val(faq.question);
+                        $('#editAnswer').val(faq.answer);
+                        $('#editFAQModal').modal('show');
+                    }
+                },
+                error: function(xhr) {
+                    console.error('Error loading FAQ:', xhr.responseText);
+                }
+            });
+        }
+
+        // Update FAQ
+        $('#updateFAQBtn').click(function() {
+            const id = $('#editFAQId').val();
+            const question = $('#editQuestion').val();
+            const answer = $('#editAnswer').val();
+
+            if (!question || !answer) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            $.ajax({
+                url: '/api/v1/faqs/' + id,
+                type: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+                    question: question,
+                    answer: answer
+                }),
+                success: function(response) {
+                    if (response.code === 200) {
+                        $('#editFAQModal').modal('hide');
+                        loadFAQs();
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error updating FAQ: ' + xhr.responseJSON.message);
+                }
+            });
+        });
+
+        // Delete FAQ
+        function deleteFAQ(id) {
+            $.ajax({
+                url: '/api/v1/faqs/' + id,
+                type: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    if (response.code === 200) {
+                        loadFAQs();
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error deleting FAQ: ' + xhr.responseJSON.message);
+                }
+            });
+        }
+
+        // Handle user questions
+        $('#sendBtn').click(function() {
+            const question = $('#userQuestion').val();
+            if (!question) return;
+
+            // In a real chatbot, you would process the question here
+            // For this demo, we'll just show a message
+            $('#chatBody').append(`
+                    <div class="text-end mb-2">
+                        <span class="badge bg-primary">You</span>
+                        <div class="d-inline-block p-2 bg-primary text-white rounded">
+                            ${question}
+                        </div>
+                    </div>
+                    <div class="text-start mb-3">
+                        <span class="badge bg-secondary">Bot</span>
+                        <div class="d-inline-block p-2 bg-light rounded">
+                            Please select from the available questions or contact support.
+                        </div>
+                    </div>
+                `);
+
+            $('#userQuestion').val('');
+            $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+        });
+
+        // Allow pressing Enter to send message
+        $('#userQuestion').keypress(function(e) {
+            if (e.which === 13) {
+                $('#sendBtn').click();
+            }
+        });
+    });
+</script>
+</body>
+</html>

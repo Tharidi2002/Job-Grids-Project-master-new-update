@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Management</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../template/assets/images/favicon.svg" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="../template/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="../template/assets/css/animate.css" />
+    <link rel="stylesheet" href="../template/assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="../template/assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="../template/assets/css/main.css" />
+
+
+    <style>
+        .profile-header {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .company-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            border: 5px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-card {
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            border-left: 4px solid #0d6efd;
+        }
+        #companyImagePreview, #imagePreview {
+            max-width: 150px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Start Header Area -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo" href="company-dashboard.html">
+                            <img class="logo1" src="../template/assets/images/logo/logo.svg" alt="Logo" />
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="active" href="company-dashboard.html">Home</a>
+                                </li>
+                                <li class="nav-item"><a href="#">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="">Profile</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="#">Candidates</a></li>
+                                <li class="nav-item"><a href="#">Employers </a></li>
+                                <li class="nav-item"><a href="#">Blog</a></li>
+                                <li class="nav-item"><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+
+                        <div class="button">
+                            <a href="../index.html"  data-target="#signup" class="btn">Log Out</a>
+                        </div>
+
+                        <!--                            POP UP Window login register-->
+                        <!--<div class="button">
+                            <a href="javacript:" data-toggle="modal" data-target="#login" class="login"><i
+                                    class="lni lni-lock-alt"></i> Login</a>
+                            <a href="javacript:" data-toggle="modal" data-target="#signup" class="btn">Sign Up</a>
+                        </div>-->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- End Header Area -->
+
+<!-- Start Hero Area -->
+<section class="hero-area">
+    <!-- Single Slider -->
+    <div class="hero-inner">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-6 co-5">
+                    <div class="inner-content">
+                        <div class="hero-text">
+                            <h1 class="wow fadeInUp" data-wow-delay=".3s"> <u>Company dashboard form</u>
+                            </h1>
+                            <h1 class="wow fadeInUp" data-wow-delay=".3s">Find Your Career <br>to Make a Better Life
+                            </h1>
+                            <p class="wow fadeInUp" data-wow-delay=".5s">Creating a beautiful job website is not
+                                easy <br> always. To make your life easier, we are<br> introducing Jobcamp template.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 co-12">
+                    <div class="hero-video-head wow fadeInRight" data-wow-delay=".5s">
+                        <div class="video-inner">
+                            <img src="../template/assets/images/hero/hero-image.png" alt="#">
+                            <a href="FAQ-Chatbot.html" class="glightbox hero-video"><i
+                                    class="lni lni-android"></i></a>
+                            <!-- Video Animation -->
+                            <div class="promo-video">
+                                <div class="waves-block">
+                                    <div class="waves wave-1"></div>
+                                    <div class="waves wave-2"></div>
+                                    <div class="waves wave-3"></div>
+                                </div>
+                            </div>
+                            <!--/ End Video Animation -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Single Slider -->
+</section>
+<!--/ End Hero Area -->
+
+<div class="container">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="profile-card p-4 text-center">
+                    <div class="mb-4">
+                        <img id="companyLogo" src="../assets/images/default-company.png" class="company-logo" alt="Company Logo">
+                        <h3 class="mt-3" id="companyName">Loading...</h3>
+                        <p class="text-muted" id="companyIndustry"></p>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCompanyModal">
+                            <i class="fas fa-edit me-2"></i>Edit Profile
+                        </button>
+                        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteCompanyModal">
+                            <i class="fas fa-trash-alt me-2"></i>Delete Account
+                        </button>
+                    </div>
+                    <button class="btn btn-outline-primary mt-4" data-bs-toggle="modal" data-bs-target="#createCompanyModal">
+                        <i class="fas fa-plus-circle me-2"></i>Create Company Profile
+                    </button>
+                </div>
+
+                <div class="profile-card p-4 mt-4">
+                    <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Company Details</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-envelope me-2"></i>Email</span>
+                            <span id="companyEmail"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-calendar-alt me-2"></i>Member Since</span>
+                            <span id="companyJoinDate"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-globe me-2"></i>Website</span>
+                            <span id="companyWebsite"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="profile-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4><i class="fas fa-building me-2"></i>Company Information</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Industry</label>
+                            <div class="form-control bg-light" id="companyIndustryText"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Founded</label>
+                            <div class="form-control bg-light" id="companyFounded"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Company Size</label>
+                            <div class="form-control bg-light" id="companySize"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <div class="form-control bg-light" id="companyPhone"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <div class="form-control bg-light" style="min-height: 100px;" id="companyDescription"></div>
+                    </div>
+                </div>
+
+                <div class="profile-card p-4 mt-4">
+                    <h4 class="mb-4"><i class="fas fa-chart-line me-2"></i>Company Stats</h4>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card p-3">
+                                <h6 class="text-muted">Jobs Posted</h6>
+                                <h3 class="mb-0" id="jobsPosted">0</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card p-3">
+                                <h6 class="text-muted">Active Jobs</h6>
+                                <h3 class="mb-0" id="activeJobs">0</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="stat-card p-3">
+                                <h6 class="text-muted">Total Applicants</h6>
+                                <h3 class="mb-0" id="totalApplicants">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Company Modal -->
+    <div class="modal fade" id="editCompanyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-building me-2"></i>Edit Company Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editCompanyForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="editCompanyName" class="form-label">Company Name*</label>
+                                    <input type="text" class="form-control" id="editCompanyName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCompanyIndustry" class="form-label">Industry*</label>
+                                    <select class="form-select" id="editCompanyIndustry" required>
+                                        <option value="">Select Industry</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Manufacturing">Manufacturing</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCompanyWebsite" class="form-label">Website</label>
+                                    <input type="url" class="form-control" id="editCompanyWebsite">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCompanyFounded" class="form-label">Founded Year</label>
+                                    <input type="number" class="form-control" id="editCompanyFounded" min="1900" max="2099">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="editCompanySize" class="form-label">Company Size</label>
+                                    <select class="form-select" id="editCompanySize">
+                                        <option value="">Select Size</option>
+                                        <option value="1-10">1-10 employees</option>
+                                        <option value="11-50">11-50 employees</option>
+                                        <option value="51-200">51-200 employees</option>
+                                        <option value="201-500">201-500 employees</option>
+                                        <option value="501-1000">501-1000 employees</option>
+                                        <option value="1001+">1001+ employees</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCompanyPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="editCompanyPhone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editCompanyDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="editCompanyDescription" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="companyLogoUpload" class="form-label">Company Logo</label>
+                                    <input class="form-control" type="file" id="companyLogoUpload" accept="image/*">
+                                    <div class="form-text">Max size 2MB (JPG, PNG)</div>
+                                </div>
+                                <div class="text-center">
+                                    <img id="companyImagePreview" src="#" class="img-thumbnail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Company Modal -->
+    <div class="modal fade" id="createCompanyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-building me-2"></i>Create Company Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="createCompanyForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="createCompanyName" class="form-label">Company Name*</label>
+                                    <input type="text" class="form-control" id="createCompanyName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyIndustry" class="form-label">Industry*</label>
+                                    <select class="form-select" id="createCompanyIndustry" required>
+                                        <option value="">Select Industry</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Manufacturing">Manufacturing</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyWebsite" class="form-label">Website</label>
+                                    <input type="url" class="form-control" id="createCompanyWebsite">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyFounded" class="form-label">Founded Year</label>
+                                    <input type="number" class="form-control" id="createCompanyFounded" min="1900" max="2099">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="createCompanySize" class="form-label">Company Size</label>
+                                    <select class="form-select" id="createCompanySize">
+                                        <option value="">Select Size</option>
+                                        <option value="1-10">1-10 employees</option>
+                                        <option value="11-50">11-50 employees</option>
+                                        <option value="51-200">51-200 employees</option>
+                                        <option value="201-500">201-500 employees</option>
+                                        <option value="501-1000">501-1000 employees</option>
+                                        <option value="1001+">1001+ employees</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="createCompanyPhone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="createCompanyDescription" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="createCompanyLogo" class="form-label">Company Logo*</label>
+                                    <input class="form-control" type="file" id="createCompanyLogo" accept="image/*" required>
+                                    <div class="form-text">Max size 2MB (JPG, PNG)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Company Modal -->
+    <div class="modal fade" id="deleteCompanyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title"><i class="fas fa-exclamation-triangle me-2"></i>Delete Company Account</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete your company account? This action cannot be undone and will remove all company data.</p>
+                    <div class="mb-3">
+                        <label for="confirmCompanyPassword" class="form-label">Enter your password to confirm:</label>
+                        <input type="password" class="form-control" id="confirmCompanyPassword" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmCompanyDeleteBtn">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start Pricing Table Area -->
+<section class="pricing-table section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <span class="wow fadeInDown" data-wow-delay=".2s">Pricing Table</span>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Pricing Plan</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                        Ipsum available, but the majority have suffered alteration in some form.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Single Table -->
+                <div class="single-table wow fadeInUp" data-wow-delay=".2s">
+                    <!-- Table Head -->
+                    <div class="table-head">
+                        <h4 class="title">BASIC PACK</h4>
+                        <div class="price">
+                            <p class="amount">$15<span class="duration">3 month</span></p>
+                        </div>
+                    </div>
+                    <!-- End Table Head -->
+                    <!-- Table List -->
+                    <ul class="table-list">
+                        <li>5+ Listings</li>
+                        <li>Contact With Agent</li>
+                        <li>Contact With Agent</li>
+                        <li>7×24 Fully Support</li>
+                        <li>50GB Space</li>
+                    </ul>
+                    <!-- End Table List -->
+                    <!-- Table Bottom -->
+                    <div class="button">
+                        <a class="btn" href="#">Register Now</a>
+                    </div>
+                    <!-- End Table Bottom -->
+                </div>
+                <!-- End Single Table-->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Single Table -->
+                <div class="single-table wow fadeInUp" data-wow-delay=".4s">
+                    <!-- Table Head -->
+                    <div class="table-head">
+                        <h4 class="title">STANDARD PACK</h4>
+                        <div class="price">
+                            <p class="amount">$12<span class="duration">6 month</span></p>
+                        </div>
+                    </div>
+                    <!-- End Table Head -->
+                    <!-- Table List -->
+                    <ul class="table-list">
+                        <li>5+ Listings</li>
+                        <li>Contact With Agent</li>
+                        <li>Contact With Agent</li>
+                        <li>7×24 Fully Support</li>
+                        <li>50GB Space</li>
+                    </ul>
+                    <!-- End Table List -->
+                    <!-- Table Bottom -->
+                    <div class="button">
+                        <a class="btn" href="#">Register Now</a>
+                    </div>
+                    <!-- End Table Bottom -->
+                </div>
+                <!-- End Single Table-->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- Single Table -->
+                <div class="single-table wow fadeInUp" data-wow-delay=".6s">
+                    <!-- Table Head -->
+                    <div class="table-head">
+                        <h4 class="title">PREMIUM PACK</h4>
+                        <div class="price">
+                            <p class="amount">$10<span class="duration">1 year</span></p>
+                        </div>
+                    </div>
+                    <!-- End Table Head -->
+                    <!-- Table List -->
+                    <ul class="table-list">
+                        <li>5+ Listings</li>
+                        <li>Contact With Agent</li>
+                        <li>Contact With Agent</li>
+                        <li>7×24 Fully Support</li>
+                        <li>50GB Space</li>
+                    </ul>
+                    <!-- End Table List -->
+                    <!-- Table Bottom -->
+                    <div class="button">
+                        <a class="btn" href="#">Register Now</a>
+                    </div>
+                    <!-- End Table Bottom -->
+                </div>
+                <!-- End Single Table-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Pricing Table Area -->
+
+<!-- Start Clients Area -->
+<div class="client-logo-section">
+    <div class="container">
+        <div class="client-logo-wrapper">
+            <div class="client-logo-carousel d-flex align-items-center justify-content-between">
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client1.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client2.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client3.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client4.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client5.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client6.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client2.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client3.png" alt="#">
+                </div>
+                <div class="client-logo">
+                    <img src="../template/assets/images/clients/client4.png" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Clients Area -->
+
+
+
+<!-- Start Footer Area -->
+<footer class="footer">
+    <!-- Start Middle Top -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="f-about single-footer">
+                        <div class="logo">
+                            <a href="#"><img src="../template/assets/images/logo/logo.svg" alt="Logo"></a>
+                        </div>
+                        <p>Start building your creative website with our awesome template Massive.</p>
+                        <ul class="contact-address">
+                            <li><span>Address:</span> 555 Wall Street, USA, NY</li>
+                            <li><span>Email:</span> example@apus.com</li>
+                            <li><span>Call:</span> 555-555-1234</li>
+                        </ul>
+                        <div class="footer-social">
+                            <ul>
+                                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-8 col-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>For Candidates</h3>
+                                <ul>
+                                    <li><a href="#">User Dashboard</a></li>
+                                    <li><a href="#">CV Packages</a></li>
+                                    <li><a href="#">Jobs Featured</a></li>
+                                    <li><a href="#">Jobs Urgent</a></li>
+                                    <li><a href="#">Candidate List</a></li>
+                                    <li><a href="#">Candidates Grid</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>For Employers</h3>
+                                <ul>
+                                    <li><a href="#">Post New</a></li>
+                                    <li><a href="#">Employer List</a></li>
+                                    <li><a href="#">Employers Grid</a></li>
+                                    <li><a href="#">Job Packages</a></li>
+                                    <li><a href="#">Jobs Listing</a></li>
+                                    <li><a href="#">Jobs Featured</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer newsletter">
+                                <h3>Join Our Newsletter</h3>
+                                <p>Subscribe to get the latest jobs posted, candidates...</p>
+                                <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                    <input name="EMAIL" placeholder="Your email address" class="common-input"
+                                           onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Your email address'" required="" type="email">
+                                    <div class="button">
+                                        <button class="btn">Subscribe Now! <span class="dir-part"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Footer Middle -->
+    <!-- Start Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="inner">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="left">
+                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
+                                                           target="_blank">GrayGrids</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="right">
+                            <ul>
+                                <li><a href="#">Terms of use</a></li>
+                                <li><a href="#"> Privacy Policy</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Middle -->
+</footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 for notifications -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--<script src="../template/assets/js/bootstrap.min.js"></script>-->
+<script src="../template/assets/js/wow.min.js"></script>
+<script src="../template/assets/js/tiny-slider.js"></script>
+<script src="../template/assets/js/glightbox.min.js"></script>
+<!--<script src="../template/assets/js/main.js"></script>-->
+<script type="text/javascript">
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+</script>
+
+<!--<script>
+    $(document).ready(function() {
+        // Load company data if exists
+        const userEmail = getUserEmailFromToken(); // Implement this function to get email from JWT
+        $('#userEmail').val(userEmail);
+        loadCompany(userEmail);
+        loadCategories();
+
+        // Logo upload preview
+        $('#logoUpload').change(function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    $('#logoPreview').attr('src', event.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        $('#companyForm').submit(function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('companyName', $('#companyName').val());
+            formData.append('location', $('#location').val());
+            formData.append('email', $('#email').val());
+            formData.append('contact', $('#contact').val());
+            formData.append('facebookUrl', $('#facebookUrl').val());
+            formData.append('websiteUrl', $('#websiteUrl').val());
+            formData.append('companyCategoryId', $('#companyCategoryId').val());
+            formData.append('userEmail', $('#userEmail').val());
+
+            const logoFile = $('#logoUpload')[0].files[0];
+            if (logoFile) {
+                formData.append('logo', logoFile);
+            }
+
+            // Check if company exists to determine update or create
+            $.ajax({
+                url: '/api/v1/company/' + userEmail,
+                type: 'GET',
+                success: function(response) {
+                    if (response.code === 200) {
+                        // Company exists - update
+                        updateCompany(formData);
+                    } else {
+                        // Company doesn't exist - create
+                        saveCompany(formData);
+                    }
+                },
+                error: function(xhr) {
+                    showAlert('Error checking company status', 'danger');
+                }
+            });
+        });
+
+        // Delete company
+        $('#deleteBtn').click(function() {
+            if (confirm('Are you sure you want to delete your company profile?')) {
+                deleteCompany(userEmail);
+            }
+        });
+    });
+
+    function loadCompany(email) {
+        $.ajax({
+            url: '/api/v1/company/' + email,
+            type: 'GET',
+            success: function(response) {
+                if (response.code === 200) {
+                    const company = response.data;
+                    $('#companyName').val(company.companyName);
+                    $('#location').val(company.location);
+                    $('#email').val(company.email);
+                    $('#contact').val(company.contact);
+                    $('#facebookUrl').val(company.facebookUrl);
+                    $('#websiteUrl').val(company.websiteUrl);
+                    setSelectedCategory(company.companyCategoryId);
+
+                    if (company.logo) {
+                        $('#logoPreview').attr('src', company.logo);
+                    }
+                }
+            },
+            error: function(xhr) {
+                console.log('Company not found or error loading');
+            }
+        });
+    }
+
+    // Helper function to get email from JWT token
+    function getUserEmailFromToken() {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+
+        // Simple JWT parsing (for demo - use proper JWT library in production)
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload.sub; // Assuming email is in the 'sub' claim
+    }
+</script>-->
+
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem('jwt_token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Load company profile data
+        function loadCompanyProfile() {
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/company-profile/get',
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    const company = response.data;
+                    if (company) {
+                        // Company profile exists - populate data
+                        $('#companyName').text(company.name);
+                        $('#companyIndustry').text(company.industry);
+                        $('#companyEmail').text(company.email);
+                        $('#companyJoinDate').text(new Date(company.joinDate).toLocaleDateString());
+                        $('#companyWebsite').text(company.website || 'Not provided');
+                        $('#companyIndustryText').text(company.industry || 'Not provided');
+                        $('#companyFounded').text(company.foundedYear || 'Not provided');
+                        $('#companySize').text(company.size || 'Not provided');
+                        $('#companyPhone').text(company.phone || 'Not provided');
+                        $('#companyDescription').text(company.description || 'Not provided');
+
+                        if (company.logo) {
+                            $('#companyLogo').attr('src', company.logo);
+                        }
+
+                        // Populate edit form
+                        $('#editCompanyName').val(company.name || '');
+                        $('#editCompanyIndustry').val(company.industry || '');
+                        $('#editCompanyWebsite').val(company.website || '');
+                        $('#editCompanyFounded').val(company.foundedYear || '');
+                        $('#editCompanySize').val(company.size || '');
+                        $('#editCompanyPhone').val(company.phone || '');
+                        $('#editCompanyDescription').val(company.description || '');
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', 'Failed to load company profile data', 'error');
+                }
+            });
+        }
+
+        // Image preview for edit form
+        $('#companyLogoUpload').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#companyImagePreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Update company profile
+        $('#editCompanyForm').submit(function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('name', $('#editCompanyName').val());
+            formData.append('industry', $('#editCompanyIndustry').val());
+            formData.append('website', $('#editCompanyWebsite').val());
+            formData.append('foundedYear', $('#editCompanyFounded').val());
+            formData.append('size', $('#editCompanySize').val());
+            formData.append('phone', $('#editCompanyPhone').val());
+            formData.append('description', $('#editCompanyDescription').val());
+
+            const logoFile = $('#companyLogoUpload')[0].files[0];
+            if (logoFile) {
+                formData.append('logo', logoFile);
+            }
+
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/company-profile/update',
+                type: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#editCompanyModal').modal('hide');
+                    Swal.fire('Success', 'Company profile updated successfully!', 'success');
+                    loadCompanyProfile();
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', xhr.responseJSON?.message || 'Failed to update company profile', 'error');
+                }
+            });
+        });
+
+        // Create company profile
+        $('#createCompanyForm').submit(function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('name', $('#createCompanyName').val());
+            formData.append('industry', $('#createCompanyIndustry').val());
+            formData.append('website', $('#createCompanyWebsite').val());
+            formData.append('foundedYear', $('#createCompanyFounded').val());
+            formData.append('size', $('#createCompanySize').val());
+            formData.append('phone', $('#createCompanyPhone').val());
+            formData.append('description', $('#createCompanyDescription').val());
+            formData.append('logo', $('#createCompanyLogo')[0].files[0]);
+
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/company-profile/save',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#createCompanyModal').modal('hide');
+                    Swal.fire('Success', 'Company profile created successfully!', 'success');
+                    loadCompanyProfile();
+                },
+                error: function(xhr) {
+                    Swal.fire('Error', xhr.responseJSON?.message || 'Failed to create company profile', 'error');
+                }
+            });
+        });
+
+        // Delete company profile
+        $('#confirmCompanyDeleteBtn').click(function() {
+            const password = $('#confirmCompanyPassword').val();
+            if (!password) {
+                Swal.fire('Error', 'Please enter your password', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This will permanently delete your company account and all associated data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'http://localhost:8082/api/v1/company-profile/delete',
+                        type: 'DELETE',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        },
+                        data: JSON.stringify({ password: password }),
+                        success: function() {
+                            localStorage.removeItem('jwt_token');
+                            localStorage.removeItem('user_role');
+                            Swal.fire(
+                                'Deleted!',
+                                'Your company account has been deleted.',
+                                'success'
+                            ).then(() => {
+                                window.location.href = '../index.html';
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire('Error', xhr.responseJSON?.message || 'Failed to delete company account', 'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Initial load
+        loadCompanyProfile();
+    });
+</script>
+
+</body>
+</html>

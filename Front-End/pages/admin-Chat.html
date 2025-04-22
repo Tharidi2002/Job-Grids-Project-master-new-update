@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Chat Support - JobGrids Job Portal.</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../template/assets/images/favicon.svg" />
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- Web Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+  <!-- ========================= CSS here ========================= -->
+  <link rel="stylesheet" href="../template/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../template/assets/css/LineIcons.2.0.css" />
+  <link rel="stylesheet" href="../template/assets/css/animate.css" />
+  <link rel="stylesheet" href="../template/assets/css/tiny-slider.css" />
+  <link rel="stylesheet" href="../template/assets/css/glightbox.min.css" />
+  <link rel="stylesheet" href="../template/assets/css/main.css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    .chat-card {
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .question-item {
+      transition: all 0.3s;
+    }
+    .question-item:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+
+</head>
+
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">
+  You are using an <strong>outdated</strong> browser. Please
+  <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+  your experience and security.
+</p>
+<![endif]-->
+
+<div id="loading-area"></div>
+
+<!-- Start Header Area -->
+<header class="header other-page">
+  <div class="navbar-area">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo" href="user-dashboard.html">
+              <img class="logo1" src="../template/assets/images/logo/logo.svg" alt="Logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+              <ul id="nav" class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="admin-dashboard.html">Home</a></li>
+                <li class="nav-item"><a href="admin-Chat.html" class="active">ChatBot</a></li>
+                <li class="nav-item"><a href="#">Employers </a></li>
+                <li class="nav-item"><a href="#">Blog</a></li>
+                <li class="nav-item"><a href="#">Contact </a> </li>
+              </ul>
+            </div>
+            <div class="button">
+              <a href="../index.html" class="login"><i
+                      class="lni lni-lock-alt"></i> LogOut</a>
+            </div>
+          </nav>
+          <!-- navbar -->
+        </div>
+      </div>
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- navbar area -->
+</header>
+<!-- End Header Area -->
+
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="breadcrumbs-content">
+          <h1 class="page-title">Chat Bot</h1>
+          <p>Business plan draws on a wide range of knowledge from different business<br> disciplines.
+            Business draws on a wide range of different business .</p>
+        </div>
+        <ul class="breadcrumb-nav">
+          <li><a href="#">Home</a></li>
+          <li>Chat Bot</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Breadcrumbs -->
+
+
+<div class="container py-5">
+  <h2 class="mb-4"><i class="fas fa-robot me-2"></i>Chatbot Question Management</h2>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="chat-card p-4">
+        <h4 class="mb-4">Questions List</h4>
+        <div class="table-responsive">
+          <table class="table table-hover" id="questionsTable">
+            <thead>
+            <tr>
+              <th>Question</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="questionsList">
+            <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="chat-card p-4">
+        <h4 class="mb-4" id="formTitle">Add New Question</h4>
+        <form id="questionForm">
+          <input type="hidden" id="questionId">
+          <div class="mb-3">
+            <label for="questionText" class="form-label">Question</label>
+            <input type="text" class="form-control" id="questionText" required>
+          </div>
+          <div class="mb-3">
+            <label for="answerText" class="form-label">Answer</label>
+            <textarea class="form-control" id="answerText" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="categorySelect" class="form-label">Category</label>
+            <input type="text" class="form-control" id="categorySelect" required>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="isActive">
+            <label class="form-check-label" for="isActive">Active</label>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Save</button>
+            <button type="button" class="btn btn-outline-secondary" id="cancelBtn" style="display:none;">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Start Clients Area -->
+<div class="client-logo-section">
+  <div class="container">
+    <div class="client-logo-wrapper">
+      <div class="client-logo-carousel d-flex align-items-center justify-content-between">
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client1.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client2.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client3.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client4.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client5.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client6.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client2.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client3.png" alt="#">
+        </div>
+        <div class="client-logo">
+          <img src="../template/assets/images/clients/client4.png" alt="#">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Clients Area -->
+
+
+
+<!-- Start Footer Area -->
+<footer class="footer">
+  <!-- Start Middle Top -->
+  <div class="footer-middle">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-12">
+          <!-- Single Widget -->
+          <div class="f-about single-footer">
+            <div class="logo">
+              <a href="#"><img src="../template/assets/images/logo/logo.svg" alt="Logo"></a>
+            </div>
+            <p>Start building your creative website with our awesome template Massive.</p>
+            <ul class="contact-address">
+              <li><span>Address:</span> 555 Wall Street, USA, NY</li>
+              <li><span>Email:</span> example@apus.com</li>
+              <li><span>Call:</span> 555-555-1234</li>
+            </ul>
+            <div class="footer-social">
+              <ul>
+                <li><a href="#"><i class="lni lni-facebook-original"></i></a></li>
+                <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
+                <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                <li><a href="#"><i class="lni lni-pinterest"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- End Single Widget -->
+        </div>
+        <div class="col-lg-8 col-12">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer f-link">
+                <h3>For Candidates</h3>
+                <ul>
+                  <li><a href="#">User Dashboard</a></li>
+                  <li><a href="#">CV Packages</a></li>
+                  <li><a href="#">Jobs Featured</a></li>
+                  <li><a href="#">Jobs Urgent</a></li>
+                  <li><a href="#">Candidate List</a></li>
+                  <li><a href="#">Candidates Grid</a></li>
+                </ul>
+              </div>
+              <!-- End Single Widget -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer f-link">
+                <h3>For Employers</h3>
+                <ul>
+                  <li><a href="#">Post New</a></li>
+                  <li><a href="#">Employer List</a></li>
+                  <li><a href="#">Employers Grid</a></li>
+                  <li><a href="#">Job Packages</a></li>
+                  <li><a href="#">Jobs Listing</a></li>
+                  <li><a href="#">Jobs Featured</a></li>
+                </ul>
+              </div>
+              <!-- End Single Widget -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="single-footer newsletter">
+                <h3>Join Our Newsletter</h3>
+                <p>Subscribe to get the latest jobs posted, candidates...</p>
+                <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                  <input name="EMAIL" placeholder="Your email address" class="common-input"
+                         onfocus="this.placeholder = ''"
+                         onblur="this.placeholder = 'Your email address'" required="" type="email">
+                  <div class="button">
+                    <button class="btn">Subscribe Now! <span class="dir-part"></span></button>
+                  </div>
+                </form>
+              </div>
+              <!-- End Single Widget -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ End Footer Middle -->
+  <!-- Start Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="inner">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="left">
+              <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
+                                             target="_blank">GrayGrids</a></p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="right">
+              <ul>
+                <li><a href="#">Terms of use</a></li>
+                <li><a href="#"> Privacy Policy</a></li>
+                <li><a href="#">Faq</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer Middle -->
+</footer>
+<!--/ End Footer Area -->
+
+<!-- ========================= scroll-top ========================= -->
+<a href="#" class="scroll-top btn-hover">
+  <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ========================= JS here ========================= -->
+<script src="../template/assets/js/bootstrap.min.js"></script>
+<script src="../template/assets/js/wow.min.js"></script>
+<script src="../template/assets/js/tiny-slider.js"></script>
+<script src="../template/assets/js/glightbox.min.js"></script>
+<script src="../template/assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    const token = localStorage.getItem('jwt_token');
+    if (!token) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // Load all questions
+    function loadQuestions() {
+      $.ajax({
+        url: '/api/chat/admin/questions',
+        type: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function(questions) {
+          $('#questionsList').empty();
+          questions.forEach(question => {
+            $('#questionsList').append(`
+                                <tr class="question-item" data-id="${question.id}">
+                                    <td>${question.question}</td>
+                                    <td>${question.category}</td>
+                                    <td>${question.isActive ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-secondary">Inactive</span>'}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary edit-btn" data-id="${question.id}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${question.id}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `);
+          });
+        }
+      });
+    }
+
+    // Form submission
+    $('#questionForm').submit(function(e) {
+      e.preventDefault();
+
+      const question = {
+        question: $('#questionText').val(),
+        answer: $('#answerText').val(),
+        category: $('#categorySelect').val(),
+        isActive: $('#isActive').is(':checked')
+      };
+
+      const id = $('#questionId').val();
+      const url = id ? `/api/chat/admin/questions/${id}` : '/api/chat/admin/questions';
+      const method = id ? 'PUT' : 'POST';
+
+      $.ajax({
+        url: url,
+        type: method,
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(question),
+        success: function() {
+          loadQuestions();
+          resetForm();
+          $('#formTitle').text('Add New Question');
+        }
+      });
+    });
+
+    // Edit button click
+    $(document).on('click', '.edit-btn', function() {
+      const id = $(this).data('id');
+      $.ajax({
+        url: `/api/chat/admin/questions/${id}`,
+        type: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function(question) {
+          $('#questionId').val(question.id);
+          $('#questionText').val(question.question);
+          $('#answerText').val(question.answer);
+          $('#categorySelect').val(question.category);
+          $('#isActive').prop('checked', question.isActive);
+          $('#formTitle').text('Edit Question');
+          $('#cancelBtn').show();
+        }
+      });
+    });
+
+    // Delete button click
+    $(document).on('click', '.delete-btn', function() {
+      if (confirm('Are you sure you want to delete this question?')) {
+        const id = $(this).data('id');
+        $.ajax({
+          url: `/api/chat/admin/questions/${id}`,
+          type: 'DELETE',
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function() {
+            loadQuestions();
+          }
+        });
+      }
+    });
+
+    // Cancel button click
+    $('#cancelBtn').click(function() {
+      resetForm();
+      $('#formTitle').text('Add New Question');
+      $(this).hide();
+    });
+
+    // Reset form
+    function resetForm() {
+      $('#questionForm')[0].reset();
+      $('#questionId').val('');
+    }
+
+    // Initial load
+    loadQuestions();
+  });
+</script>
+
+<script type="text/javascript">
+  //====== Clients Logo Slider
+  tns({
+    container: '.client-logo-carousel',
+    slideBy: 'page',
+    autoplay: true,
+    autoplayButtonOutput: false,
+    mouseDrag: true,
+    gutter: 15,
+    nav: false,
+    controls: false,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      540: {
+        items: 2,
+      },
+      768: {
+        items: 3,
+      },
+      992: {
+        items: 4,
+      },
+      1170: {
+        items: 6,
+      }
+    }
+  });
+</script>
+</body>
+
+</html>
